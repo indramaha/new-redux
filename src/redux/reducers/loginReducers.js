@@ -1,5 +1,5 @@
 const loginState = {
-    message: "",
+    message: false,
 }
 
 export const loginReducers = (state = loginState, action) => {
@@ -9,7 +9,7 @@ export const loginReducers = (state = loginState, action) => {
                 ...loginState,
                 message: action.payload
             }
-            
+
         default:
             return state;
     }

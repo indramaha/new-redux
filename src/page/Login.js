@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import "./Register.css"
 import { useDispatch } from "react-redux";
 import { loginAction } from "../redux/actions/loginAction";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -73,6 +74,11 @@ const Login = () => {
                         </div>
                     )
                 }
+            </div>
+            <div>
+                <Link to="/list-car">
+                    <button>List Car</button>
+                </Link>
             </div>
             {
                 isLogin ? <h1>Selamat datang di Ind****** selamat belanja</h1>: <p>silahkan login</p>
