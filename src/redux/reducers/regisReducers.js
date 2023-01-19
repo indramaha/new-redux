@@ -1,5 +1,5 @@
 const regisState = {
-    message:"Berhasil",
+    message:"",
 }
 
 const regisReducer = (state = regisState, action) => {
