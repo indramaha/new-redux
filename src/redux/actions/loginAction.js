@@ -9,7 +9,6 @@ export const loginAction = (payload) => dispatch => {
                 type: "LOGIN",
                 payload: true
             })
-            console.log(ress)
             localStorage.setItem("token", ress.data.access_token)
         })
         .catch((err) => console.log(err.message))

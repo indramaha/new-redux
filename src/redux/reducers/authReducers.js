@@ -14,11 +14,6 @@ export const authReducers = (state = authState, action) => {
                 ...authState,
                 message: action.payload
             }
-        case "BERHASIL":
-            return{
-                ...authState,
-                message: action.payload
-            }
         default:
             return state;
     }

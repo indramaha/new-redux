@@ -9,6 +9,7 @@ import { handleDelete } from "../redux/actions/deleteAction";
 
 const CarList = () => {
     const dispatch = useDispatch()
+
     const getAllCar = () => {
         const token = localStorage.getItem("token")
         const config = {
@@ -46,6 +47,7 @@ const CarList = () => {
     }
 
     const handleDeletes = (id) => {
+        // get id from API, use this function like example bellow
         dispatch(handleDelete(id))
     }
 
