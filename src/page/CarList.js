@@ -17,7 +17,6 @@ const CarList = () => {
                 access_token: token,
             },
         }
-
         dispatch(listCar(config))
     }
 
