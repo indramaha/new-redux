@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./Register.css"
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { regisAction } from "../redux/actions/regisAction";
 
 const Register = () => {
     const state = useSelector(rootReducers => rootReducers)
-    // console.log(state)
+    console.log(state.regis)
 
     const [email, setEmail] = useState("")
     const handleEmail = (e) => {
@@ -20,6 +20,7 @@ const Register = () => {
     }
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleRegis = () => {
         const payload = {
@@ -31,6 +32,23 @@ const Register = () => {
         dispatch(regisAction(payload))
         // console.log(payload)
     }
+
+    const handleRedirect =() => {
+        setTimeout(() => {
+            if (!!state.regis.message.length){
+                navigate("/login")
+            }
+            dispatch({
+                type: "REMOVE_STATE",
+                payload: "",
+            })
+        }, 2000);
+    }
+
+    useEffect(() => {
+        handleRedirect()
+        // eslint-disable-next-line
+    },[state.regis.message])
 
     // console.log(state)
     return (  

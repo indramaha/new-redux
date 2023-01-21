@@ -9,7 +9,11 @@ export const listCarReducers = (state = listCarState, action) => {
                 ...listCarState,
                 allCar: action.payload
             }
-    
+        case "FILLTER":
+            return {
+                ...listCarState,
+                allCar: action.payload
+            }
         default:
             return state
     }

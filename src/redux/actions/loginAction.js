@@ -11,7 +11,6 @@ export const loginAction = (payload) => dispatch => {
             })
             console.log(ress)
             localStorage.setItem("token", ress.data.access_token)
-            window.location.reload(false)
         })
         .catch((err) => console.log(err.message))
 }

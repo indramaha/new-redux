@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { listCar } from "../redux/actions/listCarAction";
 import { useDispatch, useSelector } from "react-redux";
 import "./CarList.css"
+import { handleFillter } from "../redux/actions/fillterAction";
+import { handleDelete } from "../redux/actions/deleteAction";
 
 const CarList = () => {
     const dispatch = useDispatch()
@@ -23,11 +25,52 @@ const CarList = () => {
         // eslint-disable-next-line
     },[])
 
-    const {allCar} = useSelector(rootReducers => rootReducers)
-    console.log(allCar.allCar)
+    const handleAllCar = () => {
+        const category = ""
+        dispatch(handleFillter(category))
+    }
+
+    const handleSFillter = () => {
+        const category = "small"
+        dispatch(handleFillter(category))
+    }
+
+    const handleMFillter = () => {
+        const category = "Medium"
+        dispatch(handleFillter(category))
+    }
+
+    const handleLFillter = () => {
+        const category = "large"
+        dispatch(handleFillter(category))
+    }
+
+    const handleDeletes = (id) => {
+        dispatch(handleDelete(id))
+    }
+
+    const {allCar, deletes } = useSelector((rootReducers) => rootReducers)
+    console.log(deletes)
     return (  
         <div>
             <Navbar />
+            <div>
+                <button>Add Car</button>
+            </div>
+            <div>
+                <div>
+                    <button onClick={handleAllCar}>all</button>
+                </div>
+                <div>
+                    <button onClick={handleSFillter}>2 - 4 people</button>
+                </div>
+                <div>
+                    <button onClick={handleMFillter}>4 - 6 people</button>
+                </div>
+                <div>
+                    <button onClick={handleLFillter}>6 - 8 people</button>
+                </div>
+            </div>
             <div className="listcar-card-bg">
                 {
                     !!allCar.allCar.length ? allCar.allCar.map((item, i) => {
@@ -47,7 +90,7 @@ const CarList = () => {
                                 </div>
                                 <div className="listcar-btn-bg">
                                     <div>
-                                        <button>delete</button>
+                                        <button onClick={() => handleDeletes(item.id)}>delete</button>
                                     </div>
                                     <div>
                                         <button>edit</button>

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "./Register.css"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../redux/actions/loginAction";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { handleLogout } from "../redux/actions/logoutAction";
+import rootReducers from "../redux/reducers";
 
 const Login = () => {
+    const state = useSelector(rootReducers => rootReducers)
+    console.log(state)
+
     const [email, setEmail] = useState("")
     const handleEmail = (e) => {
         setEmail(e.target.value)
@@ -17,6 +22,7 @@ const Login = () => {
     }
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleLogin = () => {
         const payLoad = {
@@ -25,15 +31,6 @@ const Login = () => {
         }
 
         dispatch(loginAction(payLoad))
-
-        // axios
-        //     .post("https://bootcamp-rent-cars.herokuapp.com/admin/auth/login", payLoad)
-        //     .then((ress) => {
-        //         console.log(ress)
-        //         localStorage.setItem("token", ress.data.access_token);
-        //         navigate("/discovery")
-        //     })
-        //     .catch((err) => console.log(err.message))
     }
 
     const [isLogin, setIsLogin] = useState(false)
@@ -46,9 +43,24 @@ const Login = () => {
         }
     },[])
 
+    const handleRedirect = () => {
+        setTimeout(() => {
+            if (state.auth.message === true){
+                navigate("/")
+            }
+            dispatch({
+                type: "BERHASIL",
+                payload: false,
+            })
+        }, 1000);
+    }
+
+    useEffect(() => {
+        handleRedirect()
+    },[state.auth.message])
+
     const handleLogOut = () => {
-        localStorage.removeItem("token")
-        window.location.reload(false)
+        dispatch(handleLogout())
     }
     return (  
         <div>
