@@ -8,12 +8,12 @@ export const authReducers = (state = authState, action) => {
         case "LOGIN":
             return {
                 ...authState,
-                isLogin: action.payload.isLogin
+                isLogin: action.payload.isLogin,
             }
         case "LOGOUT":
             return{
                 ...authState,
-                isLogin: action.payload.isLogin
+                isLogin: action.payload.isLogin,
             }
         case "CHECK_TOKEN":
             return{
