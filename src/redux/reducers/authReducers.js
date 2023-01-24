@@ -1,5 +1,6 @@
 const authState = {
-    message: false,
+    isLogin: false,
+    loading: true,
 }
 
 export const authReducers = (state = authState, action) => {
@@ -7,12 +8,18 @@ export const authReducers = (state = authState, action) => {
         case "LOGIN":
             return {
                 ...authState,
-                message: action.payload
+                isLogin: action.payload.isLogin
             }
         case "LOGOUT":
             return{
                 ...authState,
-                message: action.payload
+                isLogin: action.payload.isLogin
+            }
+        case "CHECK_TOKEN":
+            return{
+                ...authState,
+                isLogin: action.payload.isLogin,
+                loading: action.payload.loading,
             }
         default:
             return state;

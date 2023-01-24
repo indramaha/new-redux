@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "./Register.css"
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "../redux/actions/loginAction";
+import { loginAction } from "../redux/actions/authAction"; 
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const state = useSelector(rootReducers => rootReducers)
-    console.log(state)
+    console.log(state.auth.isLogin)
 
     const [email, setEmail] = useState("")
     const handleEmail = (e) => {

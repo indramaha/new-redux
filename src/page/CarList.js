@@ -50,8 +50,8 @@ const CarList = () => {
         dispatch(handleDelete(id))
     }
 
-    const {allCar, deletes } = useSelector((rootReducers) => rootReducers)
-    console.log(deletes)
+    const {allCar} = useSelector((rootReducers) => rootReducers)
+
     return (  
         <div>
             <Navbar />

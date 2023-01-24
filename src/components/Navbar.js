@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css"
 import { useDispatch } from "react-redux";
-import { handleLogout } from "../redux/actions/logoutAction";
+import { handleLogout } from "../redux/actions/authAction";
 
 const Navbar = () => {
     const token = localStorage.getItem("token")
