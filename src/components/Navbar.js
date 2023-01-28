@@ -34,6 +34,11 @@ const Navbar = () => {
                             </div>
                         )
                     }
+                    <div>
+                        <Link to="/list-car">
+                            <button>List Car</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

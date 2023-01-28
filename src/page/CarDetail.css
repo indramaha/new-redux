@@ -1,0 +1,11 @@
+.cardetail-section-bg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardetail-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

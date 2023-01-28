@@ -33,8 +33,8 @@ const Login = () => {
 
     const handleRedirect = () => {
         setTimeout(() => {
-            if (state.auth.message === true){
-                navigate("/")
+            if (state.auth.isLogin === true){
+                navigate("/list-car")
             }
         }, 1000);
     }
@@ -42,7 +42,7 @@ const Login = () => {
     useEffect(() => {
         handleRedirect()
         // eslint-disable-next-line
-    },[state.auth.message])
+    },[state.auth.isLogin])
 
     return (  
         <div>

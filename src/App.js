@@ -4,6 +4,8 @@ import Register from './page/Register';
 import Home from './page/Home';
 import CarList from './page/CarList';
 import ProtectedRoute from './hoc/ProtectedRoute';
+import CarDetail from './page/CarDetail';
+import AddCar from './page/AddCar';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route element={<ProtectedRoute />}>
         <Route path='/list-car' element={<CarList />} />
+        <Route path='/detail-car/:id' element={<CarDetail />} />
+        <Route path='/add-car' element={<AddCar />} />
       </Route>
     </Routes>
   );

@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
     const state = useSelector((rootReducers) => rootReducers)
-    console.log(state)
+    // console.log(state)
 
     const dispatch = useDispatch()
 

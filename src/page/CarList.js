@@ -1,11 +1,12 @@
 // import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { listCar } from "../redux/actions/listCarAction";
+import { listCar } from "../redux/actions/carAction";
 import { useDispatch, useSelector } from "react-redux";
 import "./CarList.css"
 import { handleFillter } from "../redux/actions/fillterAction";
 import { handleDelete } from "../redux/actions/deleteAction";
+import { Link } from "react-router-dom";
 
 const CarList = () => {
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const CarList = () => {
         getAllCar()
         // eslint-disable-next-line
     },[])
-
+ 
     const handleAllCar = () => {
         const category = ""
         dispatch(handleFillter(category))
@@ -50,13 +51,15 @@ const CarList = () => {
         dispatch(handleDelete(id))
     }
 
-    const {allCar} = useSelector((rootReducers) => rootReducers)
+    const {car} = useSelector((rootReducers) => rootReducers)
 
     return (  
         <div>
             <Navbar />
             <div>
-                <button>Add Car</button>
+                <Link to={"/add-car"}>
+                    <button>Add Car</button>
+                </Link>
             </div>
             <div>
                 <div>
@@ -74,11 +77,13 @@ const CarList = () => {
             </div>
             <div className="listcar-card-bg">
                 {
-                    !!allCar.allCar.length ? allCar.allCar.map((item, i) => {
+                    !!car.allCar.length ? car.allCar.map((item, i) => {
                         return(
                             <div key={i} className="listcar-card">
                                 <div className="listcar-image">
-                                    <img src={item.image} alt="car"/>
+                                    <Link to={`/detail-car/${item.id}`}>
+                                        <img src={item.image} alt="car"/>
+                                    </Link>
                                 </div>
                                 <div>
                                     <p>{item.name}</p>
