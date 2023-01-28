@@ -22,14 +22,6 @@ export const handleCheckToken = () => dispatch => {
     }
 }
 
-
-
-
-
-
-
-
-
 export const handleLogout = () => dispatch => {
     localStorage.removeItem("token")
     window.location.reload(false)

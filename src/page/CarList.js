@@ -1,15 +1,28 @@
 // import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { listCar } from "../redux/actions/carAction";
+import { handleListCar } from "../redux/actions/carAction";
 import { useDispatch, useSelector } from "react-redux";
 import "./CarList.css"
-import { handleFillter } from "../redux/actions/fillterAction";
-import { handleDelete } from "../redux/actions/deleteAction";
+import { handleFillter } from "../redux/actions/carAction";
+import { handleDelete } from "../redux/actions/carAction"; 
 import { Link } from "react-router-dom";
 
 const CarList = () => {
     const dispatch = useDispatch()
+    const {car} = useSelector((rootReducers) => rootReducers)
+    console.log(car)
+
+    useEffect(() => {
+        getAllCar()
+        // eslint-disable-next-line
+    },[])
+
+    useEffect(() => {
+        getAllCar()
+        // eslint-disable-next-line
+    },[car.message])
+
 
     const getAllCar = () => {
         const token = localStorage.getItem("token")
@@ -18,13 +31,10 @@ const CarList = () => {
                 access_token: token,
             },
         }
-        dispatch(listCar(config))
+        dispatch(handleListCar(config))
     }
 
-    useEffect(() => {
-        getAllCar()
-        // eslint-disable-next-line
-    },[])
+
  
     const handleAllCar = () => {
         const category = ""
@@ -51,7 +61,7 @@ const CarList = () => {
         dispatch(handleDelete(id))
     }
 
-    const {car} = useSelector((rootReducers) => rootReducers)
+    
 
     return (  
         <div>
@@ -99,7 +109,9 @@ const CarList = () => {
                                         <button onClick={() => handleDeletes(item.id)}>delete</button>
                                     </div>
                                     <div>
-                                        <button>edit</button>
+                                        <Link to={`/edit-car/${item.id}`}>
+                                            <button>edit</button>
+                                        </Link>
                                     </div>
                                     
                                 </div>

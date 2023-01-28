@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { detailCar } from "../redux/actions/carAction";
+import { handleDetailCar } from "../redux/actions/carAction";
 import { useEffect } from "react";
 import {FiArrowLeft} from "react-icons/fi"
 import "./CarDetail.css"
@@ -14,7 +14,7 @@ const CarDetail = () => {
     const detailData = state.car.detailCar
 
     const getDetailCar = () => {
-        dispatch(detailCar(id))
+        dispatch(handleDetailCar(id))
     }
 
     useEffect(() => {
