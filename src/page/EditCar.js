@@ -1,16 +1,19 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { handleEditCar } from "../redux/actions/carAction"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const EditCar = () => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [image, setImage] = useState(null)
     const [category, setCategory] = useState("")
+    const state = useSelector((rootReducers) => rootReducers)
+    console.log(state)
 
     const dispatch = useDispatch()
     const {id} = useParams()
+    const navigate = useNavigate()
 
     const handleName = (e) => {
         setName(e.target.value)
@@ -38,21 +41,21 @@ const EditCar = () => {
         dispatch(handleEditCar(id, formData))
     }
 
-    // const handleRedirect = () => {
-    //     setTimeout(() => {
-    //         if(state.addCar.message !== ""){
-    //             navigate("/list-car")
-    //         }
-    //     }, 1000);
-    // }
+    const handleRedirect = () => {
+        setTimeout(() => {
+            if(state.car.message === "OK"){
+                navigate("/list-car")
+            }
+        }, 1000);
+    }
 
-    // useEffect(() => {
-    //     if(state.addCar.message !== ""){
-    //         alert(state.addCar.message)
-    //     }
-    //     handleRedirect()
-    //     // eslint-disable-next-line
-    // }, [state.addCar.message])
+    useEffect(() => {
+        if(state.car.message !== ""){
+            alert(state.car.message)
+        }
+        handleRedirect()
+        // eslint-disable-next-line
+    }, [state.car.message])
     return (  
         <div>
             <div>

@@ -86,9 +86,10 @@ export const handleEditCar = (id, formdata) => dispatch => {
         .put(`https://bootcamp-rent-cars.herokuapp.com/admin/car/${id}`, formdata, config)
         .then((ress) => {
             console.log(ress.statusText);
-            // dispatch({
-            //     type:
-            // })
+            dispatch({
+                type: "EDIT_CAR",
+                payload: ress.statusText,
+            })
         })
         .catch((err) => {
             console.log(err);
